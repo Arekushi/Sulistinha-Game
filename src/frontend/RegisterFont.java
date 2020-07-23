@@ -1,0 +1,31 @@
+package frontend;
+
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
+import java.io.File;
+import java.io.IOException;
+
+public class RegisterFont {
+	
+	private static Font fonteCustomizada;
+	
+	public static Font minhaFont(String font, String tamanhoFont) {
+		try {
+			// Criando a fonte para uso, de um arquivo de fontes e especificando o tamanho
+		    fonteCustomizada = Font.createFont(Font.TRUETYPE_FONT, new File(font)).deriveFont(Float.parseFloat(tamanhoFont));
+		    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		    
+		    // Registrando a fonte
+		    ge.registerFont(fonteCustomizada);
+		    
+		} catch (IOException | FontFormatException e) {
+		    e.printStackTrace();
+		    
+		}
+
+		return fonteCustomizada;
+		
+	}
+
+}

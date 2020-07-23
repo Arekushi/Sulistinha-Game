@@ -17,7 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import backend.ArmazenaFrame;
+import backend.StoreFrame;
 
 @SuppressWarnings("serial")
 public class InfiniteAnimation extends JPanel implements ActionListener {
@@ -27,9 +27,9 @@ public class InfiniteAnimation extends JPanel implements ActionListener {
 	private Integer animationTimerDelay;
 	
 	// Animacao 
-	private ArmazenaFrame af;
+	private StoreFrame af;
 	private int sizeAnimation;
-	private ImageIcon images[];
+	private final ImageIcon[] images;
 	private BufferedImage img;
 	private int imagemAtual;
 	
@@ -37,7 +37,7 @@ public class InfiniteAnimation extends JPanel implements ActionListener {
 		super();
 		
 		this.animationTimerDelay = delay;
-		this.af = new ArmazenaFrame(nomeAnimacao);
+		this.af = new StoreFrame(nomeAnimacao);
 		this.sizeAnimation = af.getFrames().size();
 		this.images = new ImageIcon[sizeAnimation];
 		this.setOpaque(false);
@@ -46,9 +46,10 @@ public class InfiniteAnimation extends JPanel implements ActionListener {
 
 		for (int i = 0; i < sizeAnimation; i++) {
 			
-			try { img = ImageIO.read(new File(af.getFrames().get(i).getCaminho())); } catch (IOException e) {}
+			try { img = ImageIO.read(new File(af.getFrames().get(i).getCaminho())); }
+			catch (IOException ignored) {}
 			
-			// Método para inverter a imagem
+			// Mï¿½todo para inverter a imagem
 			if (invertido) {
 				AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
 				tx.translate(-img.getWidth(null), 0);
