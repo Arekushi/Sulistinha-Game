@@ -4,13 +4,14 @@
 
 # IntelliJ project files
 .idea
-.classpath
+bin
 .project
+.settings
+.classpath
 _config.yml
 *.iml
 out
 gen
-bin
 .gitignore
 .idea/.gitignore
 .idea/.name
